@@ -293,27 +293,48 @@ flowchart LR
 </div>
 
 ```mermaid
-flowchart TD
-    A["Cyber Incident"] --> B["Incident Intake"]
-    B --> C["Evidence Submission"]
-    C --> D["Evidence Preservation"]
-    D --> E["SHA-256 Integrity Manifest"]
-    E --> F["Chain of Custody"]
-    F --> G["Role-Based Review"]
-    G --> H["Audit Logging"]
-    H --> I["Compliance and Incident Report"]
+flowchart TB
+    I(["🚨 CYBER INCIDENT"])
 
-    style A fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
-    style B fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
-    style C fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
-    style D fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
-    style E fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
-    style F fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
-    style G fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
-    style H fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
-    style I fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    subgraph CORE["SECUREPROOF · EVIDENCE CORE"]
+        direction LR
+        S["📥 Evidence Intake"]
+        V[("🔐 EVIDENCE VAULT")]
+        H["SHA-256<br/>Integrity"]
+        S --> V --> H
+    end
+
+    I --> S
+
+    subgraph CONTROL["SECURITY & GOVERNANCE"]
+        direction LR
+        C["🔗 Chain of Custody"]
+        R["👤 RBAC"]
+        A["📋 Audit Logging"]
+    end
+
+    V --> C
+    V --> R
+    H --> A
+    C --> A
+    R --> A
+
+    O(["📄 Investigation Report"])
+    A --> O
+
+    style I fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
+    style S fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
+    style V fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:4px
+    style H fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
+    style C fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    style R fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    style A fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    style O fill:#713F12,stroke:#FBBF24,color:#FFFFFF,stroke-width:2px
+
+    style CORE fill:#101827,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
+    style CONTROL fill:#101827,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+
 ```
-
 ---
 
 ## 💼 PROFESSIONAL EXPERIENCE
