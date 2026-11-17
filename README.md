@@ -238,28 +238,50 @@ Practical configuration and troubleshooting exercises focused on networking and 
 </div>
 
 ```mermaid
-flowchart TD
-    A["CrowdSec Central Server"] --> B["Ubuntu CrowdSec Agent"]
-    B --> C["Loki Log Storage"]
-    C --> D["Grafana Explore"]
+flowchart LR
+    CS(["🛡️ CrowdSec<br/>Central Server"])
 
-    A --> E["n8n Automation"]
-    E --> F["Attack Classification"]
-    F --> G["AI-Assisted Analysis"]
-    G --> H["Telegram Notification"]
-    G --> I["Google Sheets Record"]
+    subgraph MON["01 · SECURITY MONITORING"]
+        direction LR
+        AG["🐧 Ubuntu<br/>CrowdSec Agent"]
+        LK[("📦 Loki<br/>Log Storage")]
+        GF["📊 Grafana<br/>Explore"]
+        AG --> LK --> GF
+    end
 
-    style A fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
-    style B fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
-    style C fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
-    style D fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
-    style E fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
-    style F fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
-    style G fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
-    style H fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
-    style I fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    subgraph AUTO["02 · AUTOMATED RESPONSE"]
+        direction LR
+        N8["⚙️ n8n<br/>Automation"]
+        AC{"🔍 Attack<br/>Classification"}
+        AI["🤖 AI-Assisted<br/>Analysis"]
+        N8 --> AC --> AI
+    end
+
+    subgraph OUT["03 · OUTPUT"]
+        direction TB
+        TG["📨 Telegram<br/>Notification"]
+        GS["📋 Google Sheets<br/>Record"]
+    end
+
+    CS --> AG
+    CS --> N8
+    AI --> TG
+    AI --> GS
+
+    style CS fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:3px
+    style AG fill:#123B50,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px
+    style LK fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
+    style GF fill:#493078,stroke:#C4B5FD,color:#FFFFFF,stroke-width:2px
+    style N8 fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    style AC fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    style AI fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    style TG fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+    style GS fill:#075B55,stroke:#5EEAD4,color:#FFFFFF,stroke-width:2px
+
+    style MON fill:#111827,stroke:#38BDF8,stroke-width:2px,color:#FFFFFF
+    style AUTO fill:#111827,stroke:#5EEAD4,stroke-width:2px,color:#FFFFFF
+    style OUT fill:#111827,stroke:#C4B5FD,stroke-width:2px,color:#FFFFFF
 ```
-
 ---
 
 ## 🧾 SECUREPROOF — EVIDENCE WORKFLOW
